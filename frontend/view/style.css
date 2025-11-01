@@ -1,0 +1,245 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body y fuente */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f8fc;
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contenedor principal centrado y con padding */
+.app-container {
+  max-width: 375px; /* tamaño típico móvil */
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  position: relative;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+
+.header h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.header p {
+  color: #666;
+  font-weight: 400;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Icono en header */
+.header-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Main card */
+.main-card {
+  background-color: #f4b344; /* amarillo suave */
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 10px rgba(244, 179, 68, 0.4);
+}
+.main-card-textarea {
+  background-color: #fbc66a; /* amarillo suave */
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 10px rgba(244, 179, 68, 0.4);
+}
+
+.main-card blockquote {
+  font-size: 1.3rem;
+  font-weight: 600;
+  max-width: 65%;
+  line-height: 1.3;
+}
+
+.btn-primary {
+  margin-top: 12px;
+  background-color: #d07800;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #a75e00;
+}
+
+/* Imagen dentro del main card */
+.main-image {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+/* Options menu */
+.options-menu {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.option-btn {
+  background: white;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  flex-grow: 1;
+  margin: 0 5px;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+}
+
+.option-btn:first-child {
+  margin-left: 0;
+}
+
+.option-btn:last-child {
+  margin-right: 0;
+}
+
+.option-btn:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+/* Colores de íconos */
+.story-icon {
+  background-color: #ffb703; /* amarillo */
+}
+
+.video-icon {
+  background-color: #00aaff; /* azul */
+}
+
+.music-icon {
+  background-color: #b09aff; /* morado */
+}
+
+/* Recommend section */
+.recommend-section h2 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.recommend-card {
+  background-color: #fff4cc;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 15px;
+  box-shadow: 0 4px 10px rgba(244, 179, 68, 0.3);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  transition: box-shadow 0.25s ease;
+}
+
+.recommend-card:hover {
+  box-shadow: 0 7px 15px rgba(244, 179, 68, 0.5);
+}
+
+.recommend-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
+  margin-right: 15px;
+}
+
+.recommend-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #aa7f00;
+  margin-bottom: 4px;
+}
+
+.recommend-subtitle {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #6e6e6e;
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 12px 0;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-btn:hover {
+  color: #4a90e2;
+}
+
