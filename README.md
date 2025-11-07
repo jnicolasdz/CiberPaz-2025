@@ -36,4 +36,4 @@ Para instalar y utilizar Cuetista para autistas, sigue estos pasos:
    ```
 
 4. **Accede a la aplicación**:
-   Abre tu navegador web y ve a `http://localhost:8000` para interactuar con la aplicación.
+   Abre tu navegador web y ve a `http://localhost:8000/docs` para interactuar con la aplicación.
