@@ -1,6 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from backend.controllers import text_router, voice_router, pictogram_router
 from backend.config import settings
 
@@ -22,9 +24,15 @@ app.add_middleware(
 app.include_router(text_router)
 app.include_router(voice_router)
 app.include_router(pictogram_router)
+app.mount("/frontend/static", StaticFiles(directory="frontend/static"), name="static")
+
 
 
 @app.get("/")
+def serve_index():
+    return FileResponse("frontend/static/index.html")
+
+@app.get("/info")
 async def root():
     return {
         "message": "Cuentista para Autistas API",
