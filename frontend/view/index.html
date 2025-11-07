@@ -217,12 +217,34 @@
         }
 
         /* Responsive */
-        @media (max-width:900px){
+        @media (max-width:768px){
+            body{ padding:10px; }
             .app-container{ padding:14px; margin:10px; }
-            .main-layout{ grid-template-columns:1fr; }
+            .main-layout{ grid-template-columns:1fr; gap:16px; }
             .sidebar{ order:2; }
+            .header{ flex-direction:column; text-align:center; gap:12px; }
             .header h1{ font-size:26px; }
             .header-icon{ width:76px; height:76px; }
+            .editor-card{ padding:16px; }
+            .main-card-textarea{ min-height:300px; font-size:16px; padding:14px; }
+            .option-btn{ padding:10px 12px; }
+            .option-btn .icon{ width:48px; height:48px; font-size:16px; }
+            .option-label{ font-size:14px; }
+            .preview{ min-height:120px; padding:12px; font-size:14px; }
+            .preview .small{ font-size:15px; }
+        }
+        @media (max-width:480px){
+            .header h1{ font-size:22px; }
+            .header p{ font-size:13px; max-width:none; }
+            .hint{ font-size:12px; }
+            .editor-card h2{ font-size:18px; }
+            .main-card-textarea{ min-height:250px; font-size:15px; }
+            .card{ padding:12px; }
+            .option-btn{ gap:10px; padding:8px 10px; }
+            .option-btn .icon{ width:40px; height:40px; font-size:14px; }
+            .option-label{ font-size:13px; }
+            .preview{ min-height:100px; padding:10px; font-size:13px; }
+            .preview .small{ font-size:14px; }
         }
     </style>
 </head>
@@ -230,11 +252,11 @@
     <div class="app-container">
         <!-- Decorative stickers using images from /frontend/resources -->
         
-        <img src="/frontend/resources/tigre.png" class="sticker topright" alt="" aria-hidden="true" />
-        <img src="/frontend/resources/q.png" class="sticker bottom" alt="" aria-hidden="true" />
+        <img src="./resources/tigre.png" class="sticker topright" alt="" aria-hidden="true" />
+        <img src="./resources/q.png" class="sticker bottom" alt="" aria-hidden="true" />
 
         <header class="header">
-            <img src="/frontend/resources/q.png" alt="Icono Louie" class="header-icon" />
+            <img src="./resources/q.png" alt="Icono Louie" class="header-icon" />
             <div>
                 <h1>Touie Cuentista</h1>
                 <p>Portal educativo interactivo para niños y niñas con autismo.</p>
@@ -253,15 +275,15 @@
                     <h3 style="margin:0 0 10px 0; font-size:15px;">Opciones</h3>
                     <nav class="options-menu" aria-label="Opciones de salida">
                         <button class="option-btn story" type="button">
-                            <div class="icon"><img src="/frontend/resources/t.png" alt="Cuento" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
+                            <div class="icon"><img src="./resources/t.png" alt="Cuento" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
                             <span class="option-label">Cuento</span>
                         </button>
                         <button class="option-btn pict" type="button">
-                            <div class="icon"><img src="/frontend/resources/w.png" alt="Pictograma" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
+                            <div class="icon"><img src="./resources/w.png" alt="Pictograma" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
                             <span class="option-label">Pictograma</span>
                         </button>
                         <button class="option-btn audio" type="button">
-                            <div class="icon"><img src="/frontend/resources/e.png" alt="Audio" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
+                            <div class="icon"><img src="./resources/e.png" alt="Audio" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
                             <span class="option-label">Audio</span>
                         </button>
                     </nav>
