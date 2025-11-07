@@ -1,240 +1,433 @@
-:root{
-    --bg:#fef6f8;
-    --card:#ffffff;
-    --accent:#ffb3ba; /* Harmonized to lighter pastel pink */
-    --accent-2:#ffdfba; /* Harmonized to soft peach */
-    --accent-3:#baffc9; /* Harmonized to light mint green */
-    --text:#0f172a;
-    --muted:#5b6770;
-    --radius:16px;
-    --max-width:1200px;
-}
-*{box-sizing:border-box}
-body{
-    margin:0;
-    font-family:"Baloo 2", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-    background:linear-gradient(180deg,#fff8fb,#f0fbff 60%);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding:20px;
+/* --- Importar una fuente amigable (Opcional, pero recomendado) --- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+/* --- Definición de Variables de Color para facilitar el uso --- */
+:root {
+    --naranja-principal: #FF8C3A; /* Tiger */
+    --naranja-oscuro: #E06C1F;    /* Rayas */
+    --blanco-crema: #FFF5E6;      /* Pecho */
+    --amarillo-acento: #FFD93D;   /* Camisa */
+    --rojo-destacado: #FF6B6B;    /* Pantalón */
+    --negro-suave: #363636;       /* Detalles */
+    --gris-claro: #F4F4F4;        /* Fondos secundarios */
 }
 
-/* App container */
-.app-container{
-    max-width:var(--max-width);
-    margin:12px auto;
-    padding:22px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));
-    border-radius:calc(var(--radius) + 6px);
-    box-shadow:0 18px 40px rgba(13,25,40,0.08);
-    display:grid;
-    grid-template-rows:auto 1fr;
-    gap:18px;
-    position:relative;
-    overflow:visible;
+
+/* --- Estilos Generales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Decorative stickers (use images from /frontend/resources) */
-.sticker{
-    position:absolute;
-    pointer-events:none;
-    opacity:0.95;
-    filter:drop-shadow(0 8px 18px rgba(16,24,40,0.12));
-}
-.sticker.topleft{
-    top:-18px;
-    left:-18px;
-    width:120px;
-    transform:rotate(-12deg);
-}
-.sticker.topright{
-    top:-24px;
-    right:-20px;
-    width:140px;
-    transform:rotate(8deg);
-}
-.sticker.bottom{
-    bottom:-22px;
-    left:20%;
-    width:100px;
-    transform:rotate(-6deg);
+body {
+    background-color: var(--naranja-principal); /* Fondo principal de la página */
+    font-family: 'Nunito', 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative; /* Necesario para el pseudo-elemento */
+    overflow: hidden;   /* Evita que el fondo rotado se desborde */
 }
 
-/* Header */
-.header{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    padding:6px 6px;
-}
-.header-icon{
-    width:96px;
-    height:96px;
-    object-fit:contain;
-    border-radius:18px;
-    background:linear-gradient(180deg,var(--accent-2),#fff);
-    padding:10px;
-    box-shadow:0 8px 18px rgba(255,179,186,0.12); /* Updated to match new accent */
-    border:4px solid rgba(255,255,255,0.6);
-}
-.header h1{
-    margin:0;
-    font-size:32px;
-    font-weight:700;
-    letter-spacing:0.4px;
-    color:var(--accent);
-}
-.header p{
-    margin:6px 0 0 0;
-    color:var(--muted);
-    font-size:14px;
-    max-width:780px;
+/* --- Capa de marca de agua (Sin SVG) --- */
+body::before {
+    content: '';
+    position: fixed; /* Cubre toda la pantalla, sin importar el scroll */
+    top: -10%; /* Márgenes negativos para cubrir todo al rotar */
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    z-index: -1; /* Se pone detrás de todo el contenido */
+    
+    /* Efecto de marca de agua inclinada */
+    opacity: 0.08; /* Muy sutil */
+    transform: rotate(-30deg); /* ¡La inclinación! */
+
+    /* ----- Aquí está la magia ----- */
+    
+    /* 1. Lista de todas tus imágenes */
+    background-image: 
+        url('/CiberPaz-2025/frontend/resources/hands_up.png'),
+        url('/CiberPaz-2025/frontend/resources/happy.png'),
+        url('/CiberPaz-2025/frontend/resources/hello.png'),
+        url('/CiberPaz-2025/frontend/resources/right.png'),
+        url('/CiberPaz-2025/frontend/resources/sit_down.png'),
+        url('/CiberPaz-2025/frontend/resources/thinking.png'),
+        url('/CiberPaz-2025/frontend/resources/walking.png'),
+        url('/CiberPaz-2025/frontend/resources/with_phone.png'),
+        url('/CiberPaz-2025/frontend/resources/with_phone_2.png');
+    
+    /* 2. Tamaño de cada imagen */
+    background-size: 100px 100px;
+    
+    /* 3. Posición de cada imagen (creando una cuadrícula de 3x3) */
+    background-position: 
+        0px 0px,     /* Fila 1, Col 1 */
+        100px 0px,   /* Fila 1, Col 2 */
+        200px 0px,   /* Fila 1, Col 3 */
+        0px 100px,   /* Fila 2, Col 1 */
+        100px 100px, /* Fila 2, Col 2 */
+        200px 100px, /* Fila 2, Col 3 */
+        0px 200px,   /* Fila 3, Col 1 */
+        100px 200px, /* Fila 3, Col 2 */
+        200px 200px; /* Fila 3, Col 3 */
+    
+    /* 4. NO repetir cada imagen individualmente */
+    background-repeat: 
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat;
 }
 
-/* Main layout: editor left, sidebar right */
-.main-layout{
-    display:grid;
-    grid-template-columns:1fr 340px;
-    gap:22px;
-    align-items:start;
+
+/* --- Contenedor Principal (de la APP) --- */
+/* AHORA OCULTO POR DEFECTO */
+.app-container {
+    width: 100%;
+    max-width: 420px; /* Ancho de un móvil */
+    background-color: var(--blanco-crema); /* Fondo de la tarjeta principal */
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: none; /* Oculto hasta que se presione "Comenzar" */
 }
 
-/* Editor card */
-.editor-card{
-    background:linear-gradient(180deg, #fff, #fffefe);
-    border-radius:14px;
-    padding:20px;
-    box-shadow:0 8px 22px rgba(15,23,42,0.06);
-    border:1px solid rgba(255,179,186,0.06); /* Updated */
-}
-.editor-card h2{
-    margin:0 0 12px 0;
-    font-size:20px;
-    font-weight:700;
-    color:var(--accent-3);
-}
-.main-card-textarea{
-    width:100%;
-    min-height:480px;
-    resize:vertical;
-    padding:18px;
-    font-size:18px;
-    line-height:1.6;
-    border:2px dashed rgba(186,255,201,0.18); /* Updated */
-    border-radius:14px;
-    background:linear-gradient(180deg, #fff, #fffaf3);
-    color:var(--text);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-}
-.hint{
-    margin-top:10px;
-    font-size:13px;
-    color:var(--muted);
+/* --- Cabecera --- */
+.app-header {
+    background-color: var(--blanco-crema); /* Un fondo claro para la cabecera */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--gris-claro); /* Separador suave */
 }
 
-/* Sidebar with options */
-.sidebar{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    align-items:stretch;
-}
-.card{
-    background:var(--card);
-    padding:14px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(15,23,42,0.04);
-    border:1px solid rgba(255,255,255,0.6);
-}
-.options-menu{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-.option-btn{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    border-radius:12px;
-    background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
-    border:2px solid rgba(14,39,87,0.06);
-    cursor:pointer;
-    font-weight:700;
-    color:var(--text);
-    transition:transform .12s ease, box-shadow .12s ease;
-    position:relative;
-    overflow:hidden;
-}
-.option-btn:hover{ transform:translateY(-6px) scale(1.01); box-shadow:0 18px 40px rgba(14,39,87,0.12); }
-.option-btn .icon{
-    width:56px;
-    height:56px;
-    border-radius:12px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    background:linear-gradient(180deg,#fff,#f9fbff);
-    border:1px solid rgba(14,39,87,0.06);
-    color:var(--accent);
-    flex-shrink:0;
-}
-.option-label{ font-size:15px; }
-
-/* Colorful variations */
-.option-btn.story{ background:linear-gradient(90deg,#fff7f8,#fff2fb); border-color:rgba(255,179,186,0.12); }
-.option-btn.pict{ background:linear-gradient(90deg,#fffaf0,#fff7ff); border-color:rgba(153,102,255,0.12); }
-.option-btn.audio{ background:linear-gradient(90deg,#f6fff7,#f0fff6); border-color:rgba(186,255,201,0.12); }
-
-/* Preview area */
-.preview{
-    min-height:160px;
-    border-radius:10px;
-    padding:14px;
-    border:2px dashed rgba(14,39,87,0.06);
-    color:var(--muted);
-    font-size:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:linear-gradient(180deg, rgba(255,255,255,0.7), transparent);
-}
-.preview .small{
-    font-weight:700;
-    color:var(--accent-2);
-    font-size:16px;
+.app-header h1 {
+    color: var(--negro-suave);
+    font-size: 24px;
+    font-weight: 900; /* Extra-bold */
 }
 
-/* Responsive */
-@media (max-width:768px){
-    body{ padding:10px; }
-    .app-container{ padding:14px; margin:10px; }
-    .main-layout{ grid-template-columns:1fr; gap:16px; }
-    .sidebar{ order:2; }
-    .header{ flex-direction:column; text-align:center; gap:12px; }
-    .header h1{ font-size:26px; }
-    .header-icon{ width:76px; height:76px; }
-    .editor-card{ padding:16px; }
-    .main-card-textarea{ min-height:300px; font-size:16px; padding:14px; }
-    .option-btn{ padding:10px 12px; }
-    .option-btn .icon{ width:48px; height:48px; font-size:16px; }
-    .option-label{ font-size:14px; }
-    .preview{ min-height:120px; padding:12px; font-size:14px; }
-    .preview .small{ font-size:15px; }
+.mascot-hello {
+    width: 60px;
+    height: 60px;
+    object-fit: contain; /* Asegura que la imagen se ajuste sin distorsionarse */
 }
-@media (max-width:480px){
-    .header h1{ font-size:22px; }
-    .header p{ font-size:13px; max-width:none; }
-    .hint{ font-size:12px; }
-    .editor-card h2{ font-size:18px; }
-    .main-card-textarea{ min-height:250px; font-size:15px; }
-    .card{ padding:12px; }
-    .option-btn{ gap:10px; padding:8px 10px; }
-    .option-btn .icon{ width:40px; height:40px; font-size:14px; }
-    .option-label{ font-size:13px; }
-    .preview{ min-height:100px; padding:10px; font-size:13px; }
-    .preview .small{ font-size:14px; }
+
+/* --- Navegación de Pestañas --- */
+.tab-nav {
+    display: flex;
+    background-color: var(--blanco-crema);
+}
+
+.tab-button {
+    flex: 1; /* Ocupa mitad y mitad */
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    background-color: transparent; /* Fondo transparente por defecto */
+    color: var(--naranja-oscuro);
+    cursor: pointer;
+    border-bottom: 3px solid transparent; /* Borde inferior transparente */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.tab-button.active {
+    color: var(--naranja-principal);
+    border-bottom: 3px solid var(--naranja-principal); /* Borde de acento para la pestaña activa */
+}
+
+/* --- Paneles de Contenido (Crear e Historial) --- */
+.tab-pane {
+    display: none; /* Oculto por defecto */
+    padding: 24px;
+    background-color: #FFFFFF; /* Fondo blanco para el contenido */
+}
+
+.tab-pane.active {
+    display: block; /* Muestra el panel activo */
+}
+
+
+/* --- Secciones Principales (Panel Crear) --- */
+main {
+    padding: 24px;
+}
+
+/* --- Ajuste para que los <main> no tengan el padding doble --- */
+.tab-pane {
+    padding: 24px;
+}
+/* Reseteamos el padding del main si es un tab-pane */
+main.tab-pane {
+    padding: 24px;
+}
+
+
+h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--negro-suave);
+    margin-bottom: 16px;
+}
+
+/* --- Área de Texto (Input) --- */
+.input-section textarea {
+    width: 100%;
+    height: 120px;
+    border: 2px dashed var(--naranja-principal); /* Borde punteado con color principal */
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 20px; /* Fuente grande para niños */
+    font-family: 'Nunito', 'Arial', sans-serif;
+    resize: none;
+    color: var(--negro-suave);
+    background-color: var(--blanco-crema); /* Fondo crema claro para el área de texto */
+}
+
+.input-section textarea::placeholder {
+    color: #CCC;
+}
+
+/* --- Cuadrícula de Opciones --- */
+.options-section {
+    margin-top: 24px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.option-card {
+    background-color: var(--gris-claro); /* Fondo suave para las tarjetas */
+    border: 2px solid var(--amarillo-acento); /* Borde con color de acento */
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    font-family: 'Nunito', 'Arial', sans-serif;
+    color: var(--negro-suave);
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(255, 140, 58, 0.4); /* Sombra con el naranja principal */
+    background-color: var(--amarillo-acento); /* Fondo de acento al pasar el ratón */
+}
+
+.option-card .icon, #history-pane h3 .icon {
+    font-size: 24px; /* Iconos más pequeños y consistentes */
+    display: inline-block; /* Ajuste para íconos */
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.option-card p {
+    font-size: 14px;
+    font-weight: 700;
+    color: inherit; /* Hereda el color del padre para el texto */
+}
+
+/* --- Sección de Resultados (Panel Crear) --- */
+.results-section {
+    margin-top: 24px;
+    background-color: var(--gris-claro); /* Fondo secundario para los resultados */
+    border-radius: 16px;
+    padding: 20px;
+    min-height: 150px;
+    color: var(--negro-suave);
+}
+
+#story-output .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--negro-suave); /* Color de texto para el placeholder */
+    text-align: center;
+    min-height: 110px; /* Para centrar verticalmente si el contenido es corto */
+}
+
+.mascot-waiting {
+    width: 100px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+/* --- Estilos para el estado de carga (Panel Crear) --- */
+#story-output .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--negro-suave);
+    min-height: 110px;
+    justify-content: center;
+}
+
+.mascot-thinking {
+    width: 80px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+#story-output h3 {
+    color: var(--naranja-oscuro);
+    margin-bottom: 10px;
+}
+#story-output p {
+    color: var(--negro-suave);
+}
+
+
+/* --- Nuevos Estilos para el Panel de Historial --- */
+#history-pane h3 {
+    color: var(--naranja-oscuro);
+    font-size: 18px;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--gris-claro);
+    padding-bottom: 8px;
+}
+#history-pane h3:first-child {
+    margin-top: 0;
+}
+
+.history-list {
+    max-height: 200px; /* Altura máxima para la lista, con scroll */
+    overflow-y: auto;
+}
+
+.history-item {
+    background-color: var(--blanco-crema);
+    border: 1px solid var(--amarillo-acento);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.history-item p {
+    color: var(--negro-suave);
+    font-size: 16px;
+}
+
+.history-item small {
+    color: var(--naranja-principal);
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.empty-state {
+    color: var(--negro-suave);
+    font-style: italic;
+    font-size: 14px;
+    padding: 10px;
+}
+
+
+/* --- ======== NUEVOS ESTILOS PARA LA PANTALLA DE BIENVENIDA ======== --- */
+.welcome-container {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--blanco-crema);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 32px 24px;
+    text-align: center;
+    border: 4px solid var(--amarillo-acento);
+    /* Animación sutil de entrada */
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.mascot-welcome {
+    width: 120px; /* Touie más grande en la bienvenida */
+    margin-bottom: 16px;
+    object-fit: contain;
+}
+
+.welcome-container h1 {
+    color: var(--negro-suave);
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.welcome-container h1 span {
+    color: var(--naranja-principal); /* Destaca el nombre del proyecto */
+}
+
+.slogan {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--naranja-oscuro);
+    margin-bottom: 24px;
+}
+
+.description {
+    font-size: 16px;
+    color: var(--negro-suave);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.feature-list {
+    margin: 20px 0;
+    text-align: left;
+    display: inline-block; /* Centra la lista */
+}
+
+.feature-item {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--negro-suave);
+    margin-bottom: 12px;
+    background-color: var(--gris-claro);
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--amarillo-acento);
+}
+
+.cta-button {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 900;
+    color: #FFFFFF;
+    background-color: var(--rojo-destacado); /* Color de acción fuerte */
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Pequeña sombra 3D */
+    box-shadow: 0 4px 0 0 #c24141; 
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 0 #c24141; /* Sombra al presionar */
 }
