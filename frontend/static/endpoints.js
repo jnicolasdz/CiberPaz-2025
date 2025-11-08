@@ -2,21 +2,29 @@ const btnPictogram = document.getElementById('btn-pictogram');
 const btnAudio = document.getElementById('btn-audio');
 const btnText = document.getElementById('btn-text');
 
+// Función auxiliar para obtener los valores del formulario
+function getFormValues() {
+    return {
+        tone: document.getElementById('tone-select').value,
+        complexity: document.getElementById('complexity-select').value,
+        story_type: document.getElementById('story-type-select').value,
+        protagonist_name: document.getElementById('protagonist-input').value,
+        max_tokens: parseInt(document.getElementById('max-tokens-input').value),
+        sensory_friendly: document.getElementById('sensory-friendly-checkbox').checked
+    };
+}
+
 btnPictogram.addEventListener('click', () => generatePictogram());
 btnAudio.addEventListener('click', () => generateVoice());
 btnText.addEventListener('click', () => generateStory());
 
 async function generateStory() {
     const prompt = document.querySelector(".main-card-textarea").value;
+    const formValues = getFormValues();
     
     const requestBody = {
         prompt: prompt,
-        max_tokens: 120,
-        tone: "calmo",
-        complexity: "simple",
-        sensory_friendly: true,
-        story_type: "cotidiana",
-        protagonist_name: ""
+        ...formValues
     };
 
     try {
@@ -73,16 +81,11 @@ async function generateVoice() {
 
 async function generatePictogram() {
     const prompt = document.querySelector(".main-card-textarea").value;
+    const formValues = getFormValues();
     
-    // El endpoint /pictogram/from_prompt espera el mismo schema que /text/generate
     const requestBody = {
         prompt: prompt,
-        max_tokens: 120,
-        tone: "calmo",
-        complexity: "simple",
-        sensory_friendly: true,
-        story_type: "cotidiana",
-        protagonist_name: ""
+        ...formValues
     };
 
     try {
@@ -100,11 +103,9 @@ async function generatePictogram() {
 
         const data = await response.json();
         
-        // Renderizar la historia y los pictogramas
         const outputDiv = document.getElementById("output");
-        outputDiv.innerHTML = ""; // Limpiar contenido previo
+        outputDiv.innerHTML = "";
         
-        // Mostrar la historia generada
         if (data.story) {
             const storyElement = document.createElement("div");
             storyElement.className = "story-output";
@@ -112,7 +113,6 @@ async function generatePictogram() {
             outputDiv.appendChild(storyElement);
         }
         
-        // Mostrar los pictogramas
         if (data.pictograms && data.pictograms.items && data.pictograms.items.length > 0) {
             const pictogramsContainer = document.createElement("div");
             pictogramsContainer.className = "pictograms-container";
@@ -128,7 +128,7 @@ async function generatePictogram() {
                 pictogramCard.style.cssText = "text-align: center; padding: 0.5rem; border: 1px solid #ddd; border-radius: 8px;";
                 
                 const img = document.createElement("img");
-                img.src = item.image; // La imagen ya viene en formato data:image/png;base64,...
+                img.src = item.image;
                 img.alt = item.alt || item.label;
                 img.style.cssText = "width: 100%; height: auto; border-radius: 4px;";
                 
