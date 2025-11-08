@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Touie Cuentista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/frontend/static/style.css" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Decorative stickers -->
+        <img src="/frontend/static/images/happy.png" class="sticker topright" alt="" aria-hidden="true" />
+        <img src="/frontend/static/images/sit_down.png" class="sticker bottom" alt="" aria-hidden="true" />
+
+        <header class="header">
+            <img src="/frontend/static/images/hello.png" alt="Icono Touie" class="header-icon" />
+            <div>
+                <h1>Touie Cuentista</h1>
+                <p>Portal educativo interactivo para niños y niñas con autismo.</p>
+                <div class="hint">Usa los botones a la derecha para elegir salida: cuento, pictograma o audio.</div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <main class="editor-card">
+                <h2>Escribe tu historia</h2>
+                <textarea class="main-card-textarea" aria-label="Editor de texto">Había una vez... escribe tu cuento con frases cortas y claras. Puedes añadir personajes como Touie el tigre.</textarea>
+                
+                <!-- Opciones de configuración -->
+                <div class="options-form">
+                    <div class="form-group">
+                        <label for="tone-select">Tono de la narrativa:</label>
+                        <select id="tone-select">
+                            <option value="calmo" selected>Calmo</option>
+                            <option value="energico">Energético</option>
+                            <option value="neutral">Neutral</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complexity-select">Nivel de complejidad:</label>
+                        <select id="complexity-select">
+                            <option value="simple" selected>Simple</option>
+                            <option value="intermedio">Intermedio</option>
+                            <option value="avanzado">Avanzado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="story-type-select">Tipo de historia:</label>
+                        <select id="story-type-select">
+                            <option value="cotidiana" selected>Cotidiana</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="educativa">Educativa</option>
+                            <option value="fantasia">Fantasía</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="protagonist-input">Nombre del protagonista (opcional):</label>
+                        <input type="text" id="protagonist-input" placeholder="Ej: María, Pedro...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="max-tokens-input">Longitud del texto (tokens):</label>
+                        <input type="number" id="max-tokens-input" value="120" min="50" max="800">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="sensory-friendly-checkbox" checked>
+                            <label for="sensory-friendly-checkbox">Evitar estímulos sensoriales intensos</label>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <h3 style="margin:0 0 10px 0; font-size:15px;">Opciones</h3>
+                    <nav class="options-menu" aria-label="Opciones de salida">
+                        <button class="option-btn story" id="btn-text" type="button">
+                            <div class="icon"><img src="/frontend/static/images/thinking.png" alt="Cuento" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
+                            <span class="option-label">Cuento</span>
+                        </button>
+                        <button class="option-btn pict" id="btn-pictogram" type="button">
+                            <div class="icon"><img src="/frontend/static/images/with_phone.png" alt="Pictograma" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
+                            <span class="option-label">Pictograma</span>
+                        </button>
+                        <button class="option-btn audio" id="btn-audio" type="button">
+                            <div class="icon"><img src="/frontend/static/images/with_phone_2.png" alt="Audio" style="width:40px;height:40px;object-fit:contain;border-radius:8px" /></div>
+                            <span class="option-label">Audio</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin:0 0 10px 0; font-size:15px;">Vista previa</h3>
+                    <div class="preview">
+                        <div>
+                            <div class="small">Aquí se mostrará una vista previa divertida</div>
+                            <div id="output" style="margin-top:8px; color:var(--muted); font-size:13px;">(imágenes, pictogramas o controles de audio)</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <script src="/frontend/static/endpoints.js"></script>
+</body>
+</html>
