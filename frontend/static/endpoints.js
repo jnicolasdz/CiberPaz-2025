@@ -54,8 +54,7 @@ async function generateVoice() {
     const requestBody = {
         "text": prompt,
         "language": "es",
-        "voice_speed": 1,
-        "speaker_wav": "string"
+        "voice_speed": 1
     };
 
     try {

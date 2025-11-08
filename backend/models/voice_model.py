@@ -12,7 +12,7 @@ class VoiceGenerationModel:
 
     def __init__(self, model_name: str = "tts_models/multilingual/multi-dataset/xtts_v2"):
         self.model_name = model_name
-        #self.tts = None
+        self.tts = None
         self.voices_dir = Path(__file__).parent / "voices"
         self.available_voices = list(self.voices_dir.glob("*.wav"))
         
@@ -37,7 +37,7 @@ class VoiceGenerationModel:
     def generate(
         self, 
         text: str, 
-        speaker_wav: str = "", 
+        speaker_wav: str = "",  # Changed default to empty string for better handling
         language: str = "es", 
         output_path: str = "",
         speed: float = 1.0
@@ -45,11 +45,12 @@ class VoiceGenerationModel:
         if self.tts is None:
             self.load_model()
         
-        if speaker_wav is None:
+        # Validate speaker_wav: if None, empty, or invalid path, use random voice
+        if not speaker_wav or not os.path.isfile(speaker_wav):
             speaker_wav = self.get_random_voice()
         
         if output_path is None:
-            output_path = "resources/audio/output/generated_audio.wav"
+            output_path = "/resources/audio/output/generated_audio.wav"
         
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         
